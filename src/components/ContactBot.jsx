@@ -27,7 +27,7 @@ function getError(key, value) {
     if (!validEmail(value)) return "mmm... This doesn't look like an email";
   }
   if (key === 'message') {
-    if (value.trim().length < 5) return "I'm all about words, please share a few more";
+    if (value.trim().length < 5) return "I'm all about words – please share a few more";
     if (value.length > 2000) return "That is a lot of information! Give me the gist and we'll talk about the details later";
   }
   return null;
@@ -251,8 +251,13 @@ export default function ContactBot() {
                         style={inputStyle(currentError)}
                       />
                     )}
+                    {step.key === 'message' && (
+                      <div style={{ fontFamily: T.body, fontSize: 11, color: currentValue.length > 2000 ? 'rgba(239,130,130,0.9)' : 'rgba(255,255,255,0.35)', textAlign: 'right', marginTop: 4 }}>
+                        {currentValue.length}/2000
+                      </div>
+                    )}
                     {currentError && (
-                      <div style={{ fontFamily: T.body, fontSize: 12, color: 'rgba(239,130,130,0.9)', fontWeight: 500, marginTop: 6 }}>{currentError}</div>
+                      <div style={{ fontFamily: T.body, fontSize: 12, color: 'rgba(239,130,130,0.9)', fontWeight: 500, marginTop: 4 }}>{currentError}</div>
                     )}
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 10 }}>
                       <button type="button" onClick={() => stepIdx > 0 && setStepIdx(s => s - 1)} disabled={stepIdx === 0}
