@@ -3,7 +3,8 @@ export default async function handler(req, res) {
 
   const { name, email, message } = req.body;
   const cleanEmail = (email || '').trim();
-  if (!name || !cleanEmail || !message) return res.status(400).json({ error: 'Missing fields' });
+  const emailOk = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*\.[a-zA-Z]{2,}$/.test(cleanEmail);
+  if (!name || !cleanEmail || !emailOk || !message) return res.status(400).json({ error: 'Missing fields' });
 
   const response = await fetch('https://api.resend.com/emails', {
     method: 'POST',
