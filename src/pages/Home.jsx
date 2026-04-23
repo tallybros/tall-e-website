@@ -2,7 +2,7 @@ import Navbar from '../components/Navbar';
 import HeroSection from '../components/HeroSection';
 import SelectedWork from '../components/SelectedWork';
 import AboutMe from '../components/AboutMe';
-import ContactSection from '../components/ContactSection';
+import ContactBot from '../components/ContactBot';
 import Certifications from '../components/Certifications';
 import Footer from '../components/Footer';
 
@@ -13,7 +13,7 @@ export default function Home() {
       <HeroSection />
       <SelectedWork />
       <AboutMe />
-      <ContactSection />
+      <ContactBot />
       <Certifications />
       <Footer />
     </div>
