@@ -28,7 +28,7 @@ function getError(key, value) {
   }
   if (key === 'message') {
     if (value.trim().length < 5) return "I'm all about words, please share a few more";
-    if (value.length > 2000) return "That's a lot! Please keep it under 2000 characters";
+    if (value.length > 2000) return "That is a lot of information! Give me the gist and we'll talk about the details later";
   }
   return null;
 }
