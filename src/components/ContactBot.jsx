@@ -81,21 +81,14 @@ function SuccessState({ name }) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 20, padding: '32px 16px', animation: 'bubbleIn 400ms cubic-bezier(0.16,1,0.3,1)' }}>
       <style>{`
-        @keyframes mascotWave {
-          0%   { transform: rotate(-6deg) translateY(0); }
-          25%  { transform: rotate(8deg) translateY(-4px); }
-          50%  { transform: rotate(-4deg) translateY(-6px); }
-          75%  { transform: rotate(10deg) translateY(-4px); }
-          100% { transform: rotate(-6deg) translateY(0); }
-        }
         @keyframes sparkle {
           0%, 100% { opacity: 0.2; transform: scale(0.8); }
           50%       { opacity: 1;   transform: scale(1.2); }
         }
       `}</style>
       <div style={{ position: 'relative', width: 120, height: 120 }}>
-        <img src="/favicon.png" alt="Tall-e waving"
-          style={{ width: '100%', height: '100%', objectFit: 'contain', transformOrigin: '50% 80%', animation: 'mascotWave 1.6s cubic-bezier(0.16,1,0.3,1) infinite', filter: 'drop-shadow(0 8px 24px rgba(23,217,218,0.25))' }} />
+        <img src="/favicon.png" alt="Tall-e"
+          style={{ width: '100%', height: '100%', objectFit: 'contain', filter: 'drop-shadow(0 8px 24px rgba(23,217,218,0.25))' }} />
         <div style={{ position: 'absolute', top: '10%', left: '5%', color: T.turquoise, animation: 'sparkle 1.4s ease-in-out infinite' }}>
           <svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12"><path d="M12 2l2 6 6 2-6 2-2 6-2-6-6-2 6-2z"/></svg>
         </div>
