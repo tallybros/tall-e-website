@@ -29,10 +29,8 @@ export default function HeroSection() {
 
             {/* Mobile image - half size, above CTAs */}
             <div className="md:hidden flex justify-center">
-              <div className="overflow-hidden w-32" style={{ height: '160px' }}>
-                <img src="https://media.base44.com/images/public/69c3b529e7e26a28bd6de95a/b3702af98_Tall-e_Logo.png"
-                alt="Tall-e logo" className="w-full h-full object-cover object-center" style={{ objectPosition: 'center 30%' }} />
-              </div>
+              <img src="https://media.base44.com/images/public/69c3b529e7e26a28bd6de95a/b3702af98_Tall-e_Logo.png"
+                alt="Tall-e logo" className="w-40 object-contain" />
             </div>
 
             <div className="flex flex-wrap gap-4 pt-4 justify-center md:justify-start">
