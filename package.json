@@ -13,7 +13,7 @@
     "test:a11y": "node tests/a11y-test.cjs",
     "test:regression": "node tests/regression-test.cjs",
     "test": "npm run build && npm run test:a11y && npm run test:regression",
-    "prepare": "husky"
+    "prepare": "husky || true"
   },
   "dependencies": {
     "@hello-pangea/dnd": "^17.0.0",
