@@ -13,11 +13,8 @@ export default function Navbar() {
 
   const handleLogoClick = (e) => {
     e.preventDefault();
-    if (location.pathname === '/') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      navigate('/');
-    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (location.pathname !== '/') navigate('/');
   };
 
   return (
