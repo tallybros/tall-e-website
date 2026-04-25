@@ -36,12 +36,11 @@ export default function HeroSection() {
             <div className="flex flex-wrap gap-4 pt-4 justify-center md:justify-start">
               <a
                 href="#work"
-                className="inline-flex items-center px-7 py-3 rounded-full bg-purple text-white font-medium text-sm hover:bg-purple/90 hover:text-white transition-all duration-300 hover:shadow-lg hover:shadow-purple/25">
-                
+                className="inline-flex items-center px-7 py-3 rounded-full bg-[hsl(var(--secondary))] text-white font-medium text-sm hover:bg-turquoise transition-all duration-300 hover:shadow-lg hover:shadow-turquoise/25 text-shadow-btn">
                 See my work
               </a>
               <a
-                href="#contact" className="bg-[hsl(var(--secondary))] text-[hsl(var(--primary-foreground))] px-7 py-3 text-sm font-medium rounded-full inline-flex items-center border border-border hover:border-turquoise hover:text-turquoise transition-all duration-300">Talk to me
+                href="#contact" className="inline-flex items-center px-7 py-3 rounded-full bg-purple text-white font-medium text-sm hover:bg-purple/90 hover:text-white transition-all duration-300 hover:shadow-lg hover:shadow-purple/25 text-shadow-btn">Talk to me
 
 
 

@@ -1,18 +1,29 @@
 import { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const links = [
-  { label: 'See my work', href: '#work' },
-  { label: 'Talk to me', href: '#contact' }];
+  { label: 'See my work', href: '/#work' },
+  { label: 'Talk to me', href: '/#contact' }];
 
+  const handleLogoClick = (e) => {
+    e.preventDefault();
+    if (location.pathname === '/') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      navigate('/');
+    }
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border/40">
       <div className="bg-[hsl(var(--primary))] w-full px-8 h-16 flex items-center justify-between">
-        <a href="#" className="font-zen-dots text-2xl font-bold tracking-wider text-white">Tall-e</a>
+        <a href="/" onClick={handleLogoClick} className="font-zen-dots text-2xl font-bold tracking-wider text-white">Tall-e</a>
 
         {/* Desktop */}
         <div className="hidden md:flex items-center gap-8">

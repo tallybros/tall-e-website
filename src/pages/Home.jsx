@@ -1,6 +1,7 @@
 import Navbar from '../components/Navbar';
 import HeroSection from '../components/HeroSection';
 import SelectedWork from '../components/SelectedWork';
+import PersonifiedAISection from '../components/PersonifiedAISection';
 import AboutMe from '../components/AboutMe';
 import ContactBot from '../components/ContactBot';
 import Certifications from '../components/Certifications';
@@ -12,6 +13,7 @@ export default function Home() {
       <Navbar />
       <HeroSection />
       <SelectedWork />
+      <PersonifiedAISection />
       <AboutMe />
       <ContactBot />
       <Certifications />

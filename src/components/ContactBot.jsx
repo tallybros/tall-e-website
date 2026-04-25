@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { Mail, Linkedin } from 'lucide-react';
 
 const STEPS = [
@@ -115,6 +115,21 @@ export default function ContactBot() {
   const [done, setDone] = useState(false);
   const [sending, setSending] = useState(false);
   const [sendError, setSendError] = useState(false);
+  const [sectionVisible, setSectionVisible] = useState(false);
+  const sectionRef = useRef(null);
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(([e]) => setSectionVisible(e.isIntersecting), { threshold: 0.2 });
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (sectionVisible && inputRef.current) inputRef.current.focus();
+  }, [sectionVisible, stepIdx]);
 
   const step = STEPS[stepIdx];
   const currentValue = step ? data[step.key] : '';
@@ -175,7 +190,7 @@ export default function ContactBot() {
   });
 
   return (
-    <section id="contact" style={{ background: 'hsl(264 66% 61%)', padding: '96px 0' }}>
+    <section id="contact" ref={sectionRef} style={{ background: 'hsl(264 66% 61%)', padding: '96px 0' }}>
       <style>{`
         @keyframes bubbleIn {
           0%   { opacity: 0; transform: translateY(5px); }
@@ -208,7 +223,7 @@ export default function ContactBot() {
             </div>
           </div>
 
-          {/* Chat frame — grows with content */}
+          {/* Chat frame – grows with content */}
           <div style={{ border: '1px solid rgba(255,255,255,0.1)', borderRadius: 20, padding: '24px', background: '#111' }}>
             {!done ? (
               <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
@@ -229,8 +244,8 @@ export default function ContactBot() {
                     {step.type === 'textarea' ? (
                       <textarea
                         id="contact-chat-input"
+                        ref={inputRef}
                         value={currentValue}
-                        autoFocus
                         rows={4}
                         onChange={e => set(step.key)(e.target.value)}
                         onBlur={() => {}}
@@ -241,9 +256,9 @@ export default function ContactBot() {
                     ) : (
                       <input
                         id="contact-chat-input"
+                        ref={inputRef}
                         type={step.inputType || 'text'}
                         value={currentValue}
-                        autoFocus
                         onChange={e => set(step.key)(e.target.value)}
                         onBlur={() => {}}
                         onKeyDown={e => onKeyDown(e, false)}
@@ -265,7 +280,7 @@ export default function ContactBot() {
                         ← Back
                       </button>
                       <button type="button" onClick={advance} disabled={!canAdvance || sending}
-                        style={{ fontFamily: T.display, fontSize: 12, fontWeight: 700, letterSpacing: '0.02em', padding: '10px 24px', borderRadius: 999, background: canAdvance && !sending ? T.purple : 'rgba(143,91,222,0.3)', border: 'none', color: '#fff', cursor: canAdvance && !sending ? 'pointer' : 'not-allowed', transition: 'background 200ms' }}>
+                        style={{ fontFamily: T.display, fontSize: 12, fontWeight: 700, letterSpacing: '0.02em', padding: '10px 24px', borderRadius: 999, background: canAdvance && !sending ? T.purple : 'rgba(143,91,222,0.3)', border: 'none', color: '#fff', cursor: canAdvance && !sending ? 'pointer' : 'not-allowed', transition: 'background 200ms', textShadow: '0 1px 3px rgba(0,0,0,0.45)' }}>
                         {sending ? '...' : stepIdx === STEPS.length - 1 ? 'Send' : 'Next'}
                       </button>
                     </div>

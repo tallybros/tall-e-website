@@ -19,6 +19,7 @@
     --primary: 264 66% 61%;
     --primary-foreground: 0 0% 100%;
     --secondary: 181 80% 47%;
+    --secondary-light: 176 73% 76%;
     --secondary-foreground: 0 0% 4%;
     --muted: 0 0% 12%;
     --muted-foreground: 0 0% 55%;
@@ -55,6 +56,7 @@
     --primary: 264 66% 61%;
     --primary-foreground: 0 0% 100%;
     --secondary: 181 80% 47%;
+    --secondary-light: 176 73% 76%;
     --secondary-foreground: 0 0% 4%;
     --muted: 0 0% 12%;
     --muted-foreground: 0 0% 55%;
@@ -93,4 +95,9 @@
 
 html {
   scroll-behavior: smooth;
+}
+@layer utilities {
+  .text-shadow-btn {
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.45);
+  }
 }

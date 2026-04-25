@@ -5,6 +5,8 @@ import { queryClientInstance } from '@/lib/query-client'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import PageNotFound from './lib/PageNotFound';
 import Home from './pages/Home';
+import PersonifiedAI from './pages/PersonifiedAI';
+import PersonifiedAIAdmin from './pages/PersonifiedAIAdmin';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 // Add page imports here
@@ -36,6 +38,8 @@ const AuthenticatedApp = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/personified-ai" element={<PersonifiedAI />} />
+      <Route path="/personified-ai/admin" element={<PersonifiedAIAdmin />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );

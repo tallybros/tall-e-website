@@ -90,7 +90,7 @@ function BotCard({ bot, index }) {
               target="_blank"
               rel="noopener noreferrer" className="font-orbitron inline-flex items-center gap-2 text-sm text-turquoise hover:text-turquoise/80 transition-colors">
 
-              
+
               Try it <ExternalLink size={13} />
             </a>
             <button
@@ -108,15 +108,14 @@ function BotCard({ bot, index }) {
 
 export default function SelectedWork() {
   return (
-    <section id="work" className="bg-[hsl(var(--secondary))] py-28 relative">
+    <section id="work" className="bg-[hsl(var(--secondary))] pt-28 pb-14 relative">
       <div className="max-w-6xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6 }}>
-          <h2 className="font-orbitron text-3xl md:text-4xl font-bold mb-3">Some of my work</h2>
-          <p className="text-purple text-lg mb-14">My Convobots*:</p>
+          <h2 className="font-orbitron text-3xl md:text-4xl font-bold mb-3">Some of my Convobots*</h2>
         </motion.div>
 
         <motion.p
@@ -124,7 +123,7 @@ export default function SelectedWork() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-[hsl(var(--primary))] mb-8 text-xs max-w-2xl">
+          className="text-white mb-10 text-sm max-w-2xl">
           * Convobots are AI-powered conversational experiences designed & crafted by a human (me!)
         </motion.p>
 

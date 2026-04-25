@@ -3,11 +3,11 @@ import { motion } from 'framer-motion';
 const certs = [
 {
   image: 'https://media.base44.com/images/public/user_69136b9b46dc851f01f3efc1/b2f53021b_Screenshot2026-03-25at111052.png',
-  alt: 'Amsterdam Data Academy — AI Engineering Bootcamp diploma'
+  alt: 'Amsterdam Data Academy – AI Engineering Bootcamp diploma'
 },
 {
   image: 'https://media.base44.com/images/public/user_69136b9b46dc851f01f3efc1/3fce74e7a_Screenshot2026-03-25at111131.png',
-  alt: 'Maven / Convocat Academy — GenAI Design for Conversations and Content'
+  alt: 'Maven / Convocat Academy – GenAI Design for Conversations and Content'
 }];
 
 
