@@ -8,13 +8,28 @@ export default function Navbar() {
   const location = useLocation();
 
   const links = [
-  { label: 'See my work', href: '/#work' },
-  { label: 'Talk to me', href: '/#contact' }];
+  { label: 'See my work', section: 'work' },
+  { label: 'Talk to me', section: 'contact' }];
 
   const handleLogoClick = (e) => {
     e.preventDefault();
     window.scrollTo({ top: 0, behavior: 'smooth' });
     if (location.pathname !== '/') navigate('/');
+  };
+
+  const handleSectionClick = (e, section) => {
+    e.preventDefault();
+    setOpen(false);
+    const scrollTo = () => {
+      const el = document.getElementById(section);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    };
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(scrollTo, 100);
+    } else {
+      scrollTo();
+    }
   };
 
   return (
@@ -26,10 +41,10 @@ export default function Navbar() {
         <div className="hidden md:flex items-center gap-8">
           {links.map((l) =>
           <a
-            key={l.href}
-            href={l.href} className="text-[hsl(var(--accent-foreground))] text-sm hover:text-foreground transition-colors duration-300">
-            
-            
+            key={l.section}
+            href={`/#${l.section}`}
+            onClick={(e) => handleSectionClick(e, l.section)}
+            className="text-[hsl(var(--accent-foreground))] text-sm hover:text-foreground transition-colors duration-300">
               {l.label}
             </a>
           )}
@@ -39,7 +54,6 @@ export default function Navbar() {
         <button
           onClick={() => setOpen(!open)}
           className="md:hidden text-foreground">
-          
           {open ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
@@ -49,12 +63,10 @@ export default function Navbar() {
       <div className="md:hidden bg-background/95 backdrop-blur-xl border-b border-border px-6 pb-6 pt-2 space-y-4">
           {links.map((l) =>
         <a
-          key={l.href}
-          href={l.href}
-          onClick={() => setOpen(false)}
+          key={l.section}
+          href={`/#${l.section}`}
+          onClick={(e) => handleSectionClick(e, l.section)}
           className="block text-sm text-muted-foreground hover:text-foreground transition-colors">
-          
-          
               {l.label}
             </a>
         )}
