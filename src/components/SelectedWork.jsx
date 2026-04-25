@@ -115,7 +115,7 @@ export default function SelectedWork() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6 }}>
-          <h2 className="font-orbitron text-3xl md:text-4xl font-bold mb-3">Some of my Convobots*</h2>
+          <h2 className="font-orbitron text-3xl md:text-4xl font-bold mb-3">Convobots*</h2>
         </motion.div>
 
         <motion.p
