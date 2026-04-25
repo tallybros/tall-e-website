@@ -5,6 +5,8 @@ import Footer from '../components/Footer';
 export default function PersonifiedAIAdmin() {
   const didInit = useRef(false);
 
+  useEffect(() => { window.scrollTo(0, 0); }, []);
+
   useEffect(() => {
     const m = document.createElement('meta');
     m.name = 'robots';

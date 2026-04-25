@@ -5,6 +5,8 @@ import Footer from '../components/Footer';
 export default function PersonifiedAI() {
   const didInit = useRef(false);
 
+  useEffect(() => { window.scrollTo(0, 0); }, []);
+
   useEffect(() => {
     if (didInit.current) return;
     didInit.current = true;
