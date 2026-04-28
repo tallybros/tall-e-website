@@ -9,6 +9,7 @@ if (import.meta.env.VITE_POSTHOG_KEY) {
     api_host: import.meta.env.VITE_POSTHOG_HOST || 'https://eu.i.posthog.com',
     capture_pageview: true,
     capture_pageleave: true,
+    persistence: 'memory',
   })
 }
 

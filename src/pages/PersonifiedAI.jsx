@@ -239,7 +239,7 @@ export default function PersonifiedAI() {
           border-top: 1px solid var(--pai-border);
           padding: 14px 18px; font-size: 13px;
           color: rgba(255,255,255,0.55); font-weight: 300; line-height: 1.7;
-          height: 88px; overflow-y: auto; white-space: pre-wrap;
+          height: calc(5 * 1.7 * 13px + 28px); overflow-y: auto; white-space: pre-wrap;
         }
 
         /* PRESETS */
