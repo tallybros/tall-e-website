@@ -707,6 +707,9 @@ export default function PersonifiedAIAdmin() {
               <div className="sidebar-label">Settings</div>
               <button className="nav-btn active" data-tab="model">Model</button>
               <button className="nav-btn" data-tab="brands">Brands</button>
+              <div className="sidebar-label" style={{marginTop: '1.5rem'}}>Analytics</div>
+              <a className="nav-btn" href="https://eu.posthog.com" target="_blank" rel="noopener noreferrer" style={{textDecoration: 'none', display: 'block'}}>PostHog ↗</a>
+              <a className="nav-btn" href="https://vercel.com/tallybros-projects/tall-e-website/analytics" target="_blank" rel="noopener noreferrer" style={{textDecoration: 'none', display: 'block'}}>Vercel Analytics ↗</a>
               <div className="sidebar-bottom">
                 <p className="save-status" id="save-status"></p>
               </div>
