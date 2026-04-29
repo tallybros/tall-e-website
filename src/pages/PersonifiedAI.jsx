@@ -76,6 +76,18 @@ export default function PersonifiedAI() {
         brands.filter((b) => !b.hidden).length ? 'block' : 'none';
     }
 
+    function linkify(text) {
+      const esc = text
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      const a = (href, label) =>
+        `<a href="${href}" target="_blank" rel="noopener noreferrer" style="color:var(--pai-secondary);text-decoration:underline;text-underline-offset:2px">${label}</a>`;
+      return esc
+        // [label](url)
+        .replace(/\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g, (_, label, url) => a(url, label))
+        // bare https?:// URLs not already inside an href
+        .replace(/(?<!href=")(https?:\/\/[^\s<>"]+)/g, (url) => a(url, url));
+    }
+
     function setBrand(id) {
       const brand = brands.find((b) => b.id === id);
       if (!brand) return;
@@ -84,7 +96,7 @@ export default function PersonifiedAI() {
       $$('.persona-btn').forEach((b) =>
         b.classList.toggle('active', b.dataset.id === id)
       );
-      $('#brand-desc').textContent = brand.description || '';
+      $('#brand-desc').innerHTML = linkify(brand.description || '');
 
       const presetRow = $('#preset-row');
       const presetLabel = $('#preset-label');
