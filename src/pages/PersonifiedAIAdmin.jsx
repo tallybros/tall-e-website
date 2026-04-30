@@ -165,8 +165,8 @@ export default function PersonifiedAIAdmin() {
       const editor = $('#brand-editor');
       editor.innerHTML = `
         <div class="editor-header">
-          <input class="brand-name-input" id="edit-name" value="${escAttr(brand.name)}" placeholder="Brand name">
-          <button class="delete-btn" id="delete-btn">Delete brand</button>
+          <input class="brand-name-input" id="edit-name" value="${escAttr(brand.name)}" placeholder="Persona name">
+          <button class="delete-btn" id="delete-btn">Delete persona</button>
         </div>
         <div class="editor-section" style="display:flex;align-items:center;gap:10px;margin-bottom:1rem">
           <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-family:var(--pai-font-body);font-size:13px;color:var(--pai-text-sec)">
@@ -181,6 +181,7 @@ export default function PersonifiedAIAdmin() {
         <div class="editor-section">
           <label class="editor-label">Voice &amp; Tone guide</label>
           <textarea class="brand-vt-input" id="edit-guide">${escHtml(brand.guide)}</textarea>
+          <div id="vt-wordcount" style="text-align:right;font-size:11px;margin-top:4px;opacity:0.45;font-family:var(--pai-font-body)">${brand.guide ? brand.guide.trim().split(/\s+/).filter(Boolean).length : 0} words</div>
         </div>
         <div class="editor-section">
           <label class="editor-label">Preset prompts <span style="opacity:0.5;font-style:italic;text-transform:none;letter-spacing:0">(shown as quick options)</span></label>
@@ -210,6 +211,11 @@ export default function PersonifiedAIAdmin() {
       renderPresetInputs(presets);
       $('#apply-btn').addEventListener('click', () => applyEdit(id));
       $('#delete-btn').addEventListener('click', () => deleteBrand(id));
+      $('#edit-guide').addEventListener('input', () => {
+        const words = $('#edit-guide').value.trim().split(/\s+/).filter(Boolean).length;
+        const el = $('#vt-wordcount');
+        if (el) { el.textContent = `${words} words`; el.style.opacity = words > 400 ? '1' : '0.45'; el.style.color = words > 400 ? 'var(--pai-primary)' : ''; }
+      });
       $('#preview-run-btn').addEventListener('click', () => runPreview(id));
       $('#add-preset-btn').addEventListener('click', () => {
         const current = getPresets();
@@ -222,7 +228,7 @@ export default function PersonifiedAIAdmin() {
 
     async function applyEdit(id) {
       const idx = settings.brands.findIndex((b) => b.id === id);
-      settings.brands[idx].name = $('#edit-name').value.trim() || 'Unnamed brand';
+      settings.brands[idx].name = $('#edit-name').value.trim() || 'Unnamed persona';
       settings.brands[idx].hidden = $('#edit-hidden').checked;
       settings.brands[idx].description = $('#edit-desc').value.trim();
       settings.brands[idx].guide = $('#edit-guide').value.trim();
@@ -247,7 +253,7 @@ export default function PersonifiedAIAdmin() {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            system: `Apply the following Voice & Tone guide to your response, whatever the task. Do not explain what you are doing, just respond.\n\n${guide}`,
+            system: `You are a writer with a specific voice. Everything you write must follow the Voice & Tone guide below — not as a generic AI, not as a helpful assistant. As this writer. Every word.\n\nDo not mention the guide. Do not explain what you are doing. Just write.\n\n${guide}\n\nStay in this voice for your entire response. If you catch yourself sounding generic, stop and rewrite.`,
             prompt,
             model,
             devToken: adminPassword,
@@ -264,11 +270,11 @@ export default function PersonifiedAIAdmin() {
     }
 
     function deleteBrand(id) {
-      if (!confirm('Delete this brand?')) return;
+      if (!confirm('Delete this persona?')) return;
       settings.brands = settings.brands.filter((b) => b.id !== id);
       editingId = null;
       $('#brand-editor').innerHTML =
-        '<p class="editor-placeholder">Select a brand to edit</p>';
+        '<p class="editor-placeholder">Select a persona to edit</p>';
       renderBrandList();
       saveToServer();
     }
@@ -314,7 +320,7 @@ export default function PersonifiedAIAdmin() {
     const addBrandBtn = $('#add-brand-btn');
     const onAddBrand = () => {
       const id = 'brand_' + Date.now();
-      settings.brands.push({ id, name: 'New brand', guide: '' });
+      settings.brands.push({ id, name: 'New persona', hidden: true, presets: ['Write a thank you note', 'Tell me something interesting', 'I accidentally deleted all my emails'], guide: `Persona:\nWho is this person, what do they know, what they want to achieve.\nThey write like [analogy]. Not like [anti-example].\nAudience: [who they're talking to]\n\nValues:\n3–4 core values or traits. What it means for the conversation.\nCan be framed as 'this, not that' for nuance.\n\nSituation:\nIf there is a different tone to adopt according to the situation.\n\nLanguage rules:\nPerson, spelling, active/passive voice.\n\nFormat rules:\nShort/long, emojis, lists.\n\nWords to use:\nBrand vocab + general vocab.\n\nWords to avoid:\nOff-brand vocab + general vocab.\n\nWould say:\n1–3 phrases the brand would use.\n\nWould never say:\n1–3 phrases the brand would never use (but others might).\n\nSafety loop:\nFollow this guide when writing, recheck and revise before finalizing.` });
       editBrand(id);
     };
     addBrandBtn.addEventListener('click', onAddBrand);
@@ -706,7 +712,7 @@ export default function PersonifiedAIAdmin() {
               </a>
               <div className="sidebar-label">Settings</div>
               <button className="nav-btn active" data-tab="model">Model</button>
-              <button className="nav-btn" data-tab="brands">Brands</button>
+              <button className="nav-btn" data-tab="brands">Personas</button>
               <div className="sidebar-label" style={{marginTop: '1.5rem'}}>Analytics</div>
               <a className="nav-btn" href="https://eu.posthog.com" target="_blank" rel="noopener noreferrer" style={{textDecoration: 'none', display: 'block'}}>PostHog ↗</a>
               <a className="nav-btn" href="https://vercel.com/tallybros-projects/tall-e-website/analytics" target="_blank" rel="noopener noreferrer" style={{textDecoration: 'none', display: 'block'}}>Vercel Analytics ↗</a>
@@ -792,15 +798,15 @@ export default function PersonifiedAIAdmin() {
               </div>
 
               <div className="tab" id="tab-brands">
-                <h2 className="tab-title">Brands</h2>
-                <p className="tab-desc">Each brand has its own Voice &amp; Tone guide shown in the demo.</p>
+                <h2 className="tab-title">Personas</h2>
+                <p className="tab-desc">Each persona has its own Voice &amp; Tone guide shown in the demo.</p>
                 <div className="brands-layout">
                   <div className="brands-list-panel">
                     <div className="brands-list" id="brands-list"></div>
-                    <button className="add-brand-btn" id="add-brand-btn">+ Add brand</button>
+                    <button className="add-brand-btn" id="add-brand-btn">+ Add persona</button>
                   </div>
                   <div className="brand-editor" id="brand-editor">
-                    <p className="editor-placeholder">Select a brand to edit</p>
+                    <p className="editor-placeholder">Select a persona to edit</p>
                   </div>
                 </div>
               </div>

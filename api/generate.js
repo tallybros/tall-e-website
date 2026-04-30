@@ -141,7 +141,7 @@ export default async function handler(req, res) {
 
   if (req.method === "OPTIONS") return res.status(200).end();
 
-  const { brandId, prompt, model, devToken } = req.body;
+  const { brandId, prompt, model, devToken, system: inlineSystem } = req.body;
 
   if (!prompt) {
     return res.status(400).json({ error: "Missing prompt" });
@@ -188,8 +188,17 @@ export default async function handler(req, res) {
     }
   }
 
-  const { guide, _debug: guideDebug } = await getBrandGuide(brandId);
-  const system = guide ? buildSystemPrompt(guide) : null;
+  // Admin preview sends the guide inline (so drafts can be tested before saving).
+  // Only trust inlineSystem when the request is already authenticated via devToken.
+  let system, guideDebug;
+  if (isBypassed && inlineSystem) {
+    system = inlineSystem;
+    guideDebug = "inline";
+  } else {
+    const { guide, _debug } = await getBrandGuide(brandId);
+    guideDebug = _debug;
+    system = guide ? buildSystemPrompt(guide) : null;
+  }
 
   const ANTHROPIC_MODELS = ["claude-opus-4-7", "claude-sonnet-4-6", "claude-haiku-4-5-20251001"];
   const OPENAI_MODELS = ["gpt-4o", "gpt-4o-mini", "o3-mini"];
