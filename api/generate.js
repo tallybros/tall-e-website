@@ -87,29 +87,38 @@ async function kvGet(url, token, key) {
 }
 
 async function getBrandGuide(brandId) {
-  if (!brandId) return null;
+  if (!brandId) return { guide: null, _debug: "no_brandId" };
 
   const KV_URL = process.env.KV_REST_API_URL;
   const KV_TOKEN = process.env.KV_REST_API_TOKEN;
 
-  if (KV_URL && KV_TOKEN) {
-    try {
-      const settings = await kvGet(KV_URL, KV_TOKEN, "settings");
-      if (settings?.brands) {
-        const brand = settings.brands.find((b) => b.id === brandId);
-        if (brand?.guide) return brand.guide;
-      }
-    } catch {
-      // fall through to defaults
-    }
+  if (!KV_URL || !KV_TOKEN) {
+    const brand = DEFAULT_BRANDS.find((b) => b.id === brandId);
+    return { guide: brand?.guide || null, _debug: "no_kv_env" };
   }
 
-  const brand = DEFAULT_BRANDS.find((b) => b.id === brandId);
-  return brand?.guide || null;
+  try {
+    const settings = await kvGet(KV_URL, KV_TOKEN, "settings");
+    if (settings?.brands) {
+      const brand = settings.brands.find((b) => b.id === brandId);
+      if (brand?.guide) return { guide: brand.guide, _debug: "kv_found" };
+      if (brand) return { guide: null, _debug: "kv_brand_no_guide" };
+      // Brand not in KV brands array — try defaults
+      const def = DEFAULT_BRANDS.find((b) => b.id === brandId);
+      return { guide: def?.guide || null, _debug: def ? "default_fallback" : "kv_brand_not_found" };
+    } else {
+      const def = DEFAULT_BRANDS.find((b) => b.id === brandId);
+      return { guide: def?.guide || null, _debug: "kv_no_brands" };
+    }
+  } catch (e) {
+    console.error("getBrandGuide KV error:", e);
+    const def = DEFAULT_BRANDS.find((b) => b.id === brandId);
+    return { guide: def?.guide || null, _debug: `kv_error:${e.message}` };
+  }
 }
 
 function buildSystemPrompt(guide) {
-  return `Apply the following Voice & Tone guide to your response, whatever the task. Do not explain what you are doing — just respond in the brand voice described.\n\n${guide}`;
+  return `You are a writer with a specific voice. Everything you write must follow the Voice & Tone guide below — not as a generic AI, not as a helpful assistant. As this writer. Every word.\n\nDo not mention the guide. Do not explain what you are doing. Just write.\n\n${guide}\n\nStay in this voice for your entire response. If you catch yourself sounding generic, stop and rewrite.`;
 }
 
 export default async function handler(req, res) {
@@ -174,12 +183,12 @@ export default async function handler(req, res) {
       if (ipCount === 1) await kvCmd(["EXPIRE", ipKey, 3600]);
       if (globalCount === 1) await kvCmd(["EXPIRE", globalKey, 86400]);
 
-      if (ipCount > 20) return res.status(429).json({ error: "Too many requests. Try again in an hour." });
+      if (ipCount > 20) return res.status(429).json({ error: "I love your curiosity – you've reached the end of this demo.\n[Why don't we chat?](https://www.tall-e.nl/#contact)" });
       if (globalCount > 100) return res.status(429).json({ error: "Daily limit reached. Try again tomorrow." });
     }
   }
 
-  const guide = await getBrandGuide(brandId);
+  const { guide, _debug: guideDebug } = await getBrandGuide(brandId);
   const system = guide ? buildSystemPrompt(guide) : null;
 
   const ANTHROPIC_MODELS = ["claude-opus-4-7", "claude-sonnet-4-6", "claude-haiku-4-5-20251001"];
@@ -209,7 +218,7 @@ export default async function handler(req, res) {
       if (!response.ok) return res.status(response.status).json({ error: data.error?.message || "API error" });
 
       const text = data.choices[0]?.message?.content?.trim() || "";
-      return res.status(200).json({ text, model: data.model, tokens: data.usage?.completion_tokens });
+      return res.status(200).json({ text, model: data.model, tokens: data.usage?.completion_tokens, _guide: guideDebug });
     }
 
     if (isGoogle) {
@@ -232,7 +241,7 @@ export default async function handler(req, res) {
 
       const text = data.candidates?.[0]?.content?.parts?.map((p) => p.text).join("").trim() || "";
       const tokens = data.usageMetadata?.candidatesTokenCount;
-      return res.status(200).json({ text, model: selectedModel, tokens });
+      return res.status(200).json({ text, model: selectedModel, tokens, _guide: guideDebug });
     }
 
     const response = await fetch("https://api.anthropic.com/v1/messages", {
@@ -256,7 +265,7 @@ export default async function handler(req, res) {
     }
 
     const text = data.content.map((block) => block.text || "").join("\n").trim();
-    return res.status(200).json({ text, model: data.model, tokens: data.usage?.output_tokens });
+    return res.status(200).json({ text, model: data.model, tokens: data.usage?.output_tokens, _guide: guideDebug });
   } catch (err) {
     console.error("Proxy error:", err);
     return res.status(500).json({ error: "Internal server error" });

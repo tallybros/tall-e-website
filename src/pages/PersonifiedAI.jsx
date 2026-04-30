@@ -123,6 +123,7 @@ export default function PersonifiedAI() {
         body: JSON.stringify({ brandId: brandId || null, prompt: user, model: currentModel, devToken }),
       });
       const data = await res.json();
+      if (brandId) console.log(`[PAI debug] brandId=${brandId} guide=${data._guide}`);
       if (!res.ok) throw new Error(data.error || 'API error');
       return { text: data.text, model: data.model, tokens: data.tokens };
     }
@@ -142,6 +143,9 @@ export default function PersonifiedAI() {
         ]);
         genericOut.textContent = generic.text;
         guidedOut.textContent = guided.text;
+        const activeBrand = brands.find((b) => b.id === currentBrandId);
+        const labelEl = $('#guided-col-label');
+        if (labelEl && activeBrand) labelEl.textContent = `Personified AI – ${activeBrand.name}`;
         $('#generic-meta-head').textContent = generic.model
           ? `${formatModel(generic.model)}${generic.tokens ? ` · ${generic.tokens} tokens` : ''}`
           : '';
@@ -149,8 +153,8 @@ export default function PersonifiedAI() {
           ? `${formatModel(guided.model)}${guided.tokens ? ` · ${guided.tokens} tokens` : ''}`
           : '';
       } catch (e) {
-        genericOut.textContent = `Error: ${e.message}`;
-        guidedOut.textContent = `Error: ${e.message}`;
+        genericOut.innerHTML = linkify(e.message);
+        guidedOut.innerHTML = linkify(e.message);
       }
       runBtn.disabled = false;
     };
@@ -292,7 +296,7 @@ export default function PersonifiedAI() {
           display: inline-flex; align-items: center;
           padding: 12px 28px;
           background: #8F5BDE; color: #fff;
-          border: none; border-radius: 9999px;
+          border: none; border-radius: var(--pai-radius-sm);
           font-family: var(--pai-font-body); font-size: 14px; font-weight: 500;
           cursor: pointer; white-space: nowrap;
           text-shadow: 0 1px 3px rgba(0,0,0,0.45);
@@ -389,7 +393,7 @@ export default function PersonifiedAI() {
             </div>
             <div className="output-col col-guided">
               <div className="output-col-head">
-                <span className="col-head-label">Personified AI</span>
+                <span className="col-head-label" id="guided-col-label">Personified AI</span>
                 <span className="col-head-meta" id="guided-meta-head"></span>
               </div>
               <div className="output-body" id="guided-out">
