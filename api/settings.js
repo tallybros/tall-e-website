@@ -138,7 +138,10 @@ export default async function handler(req, res) {
     if (!KV_URL || !KV_TOKEN) return res.status(200).json(DEFAULT_SETTINGS);
     try {
       const settings = await kvGet(KV_URL, KV_TOKEN, "settings");
-      return res.status(200).json(settings || DEFAULT_SETTINGS);
+      if (!settings) return res.status(200).json(DEFAULT_SETTINGS);
+      // If brands were wiped, restore defaults so the demo is never blank
+      if (!settings.brands?.length) settings.brands = DEFAULT_SETTINGS.brands;
+      return res.status(200).json(settings);
     } catch {
       return res.status(200).json(DEFAULT_SETTINGS);
     }

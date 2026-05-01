@@ -115,21 +115,8 @@ export default function ContactBot() {
   const [done, setDone] = useState(false);
   const [sending, setSending] = useState(false);
   const [sendError, setSendError] = useState(false);
-  const [sectionVisible, setSectionVisible] = useState(false);
   const sectionRef = useRef(null);
   const inputRef = useRef(null);
-
-  useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(([e]) => setSectionVisible(e.isIntersecting), { threshold: 0.2 });
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    if (sectionVisible && inputRef.current) inputRef.current.focus();
-  }, [sectionVisible, stepIdx]);
 
   const step = STEPS[stepIdx];
   const currentValue = step ? data[step.key] : '';
@@ -198,7 +185,11 @@ export default function ContactBot() {
         }
         #contact-chat-input::placeholder { color: rgba(255,255,255,0.35); }
         @media (max-width: 820px) {
-          #contact-grid { grid-template-columns: 1fr !important; }
+          #contact-grid { grid-template-columns: 1fr !important; gap: 12px !important; }
+          #kvk-desktop { display: none; }
+        }
+        @media (min-width: 821px) {
+          #kvk-mobile { display: none; }
         }
       `}</style>
 
@@ -217,7 +208,7 @@ export default function ContactBot() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
             <ContactTile icon="mail" tint={T.purple} hoverBorder="rgba(143,91,222,0.5)" label="Email" value="info@tall-e.nl" href="mailto:info@tall-e.nl" bg="rgba(143,91,222,0.10)" />
             <ContactTile icon="linkedin" tint={T.turquoise} hoverBorder="rgba(23,217,218,0.5)" label="LinkedIn" value="Tally Brostowsky" href="https://www.linkedin.com/in/tally-brostowsky/" bg="rgba(23,217,218,0.10)" />
-            <div style={{ marginTop: 12, color: 'rgba(255,255,255,0.45)', fontFamily: T.body, fontSize: 12, lineHeight: 1.7 }}>
+            <div id="kvk-desktop" style={{ marginTop: 12, color: 'rgba(255,255,255,0.45)', fontFamily: T.body, fontSize: 12, lineHeight: 1.7 }}>
               <div>KVK: 42029043</div>
               <div>BTW: NL005441756B54</div>
             </div>
@@ -280,7 +271,7 @@ export default function ContactBot() {
                         ← Back
                       </button>
                       <button type="button" onClick={advance} disabled={!canAdvance || sending}
-                        style={{ fontFamily: T.display, fontSize: 12, fontWeight: 700, letterSpacing: '0.02em', padding: '10px 24px', borderRadius: 999, background: canAdvance && !sending ? T.purple : 'rgba(143,91,222,0.3)', border: 'none', color: '#fff', cursor: canAdvance && !sending ? 'pointer' : 'not-allowed', transition: 'background 200ms', textShadow: '0 1px 3px rgba(0,0,0,0.45)' }}>
+                        style={{ fontFamily: T.body, fontSize: 14, fontWeight: 500, padding: '10px 24px', borderRadius: 8, background: canAdvance && !sending ? T.purple : 'rgba(143,91,222,0.3)', border: 'none', color: '#fff', cursor: canAdvance && !sending ? 'pointer' : 'not-allowed', transition: 'background 200ms', textShadow: '0 1px 3px rgba(0,0,0,0.45)' }}>
                         {sending ? '...' : stepIdx === STEPS.length - 1 ? 'Send' : 'Next'}
                       </button>
                     </div>
@@ -297,6 +288,10 @@ export default function ContactBot() {
               <SuccessState name={data.name} />
             )}
           </div>
+        </div>
+        <div id="kvk-mobile" style={{ marginTop: 24, color: 'rgba(255,255,255,0.45)', fontFamily: T.body, fontSize: 12, lineHeight: 1.7 }}>
+          <div>KVK: 42029043</div>
+          <div>BTW: NL005441756B54</div>
         </div>
       </div>
     </section>

@@ -33,7 +33,7 @@ export default function PersonifiedAISection() {
             </div>
             <Link
               to="/personified-ai"
-              className="inline-flex items-center gap-2 px-7 py-3 rounded-full bg-purple text-white font-medium text-sm hover:bg-purple/90 hover:text-white transition-all duration-300 hover:shadow-lg hover:shadow-purple/25 whitespace-nowrap self-start md:self-center text-shadow-btn">
+              className="inline-flex items-center gap-2 px-7 py-3 rounded-lg bg-purple text-white font-medium text-sm hover:bg-purple/90 hover:text-white transition-all duration-300 hover:shadow-lg hover:shadow-purple/25 whitespace-nowrap self-start md:self-center text-shadow-btn">
               Try the demo <ArrowRight size={16} />
             </Link>
           </div>

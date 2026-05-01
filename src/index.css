@@ -93,6 +93,10 @@
   }
 }
 
+section[id] {
+  scroll-margin-top: 64px;
+}
+
 html {
   scroll-behavior: smooth;
 }

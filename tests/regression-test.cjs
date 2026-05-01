@@ -157,6 +157,32 @@ async function checkPersonifiedPublic(browser) {
       record('PAI: required elements present', true, null);
     } catch (e) { record('PAI: required elements present', false, e.message); }
 
+    // Critical: at least one persona must be visible. Empty demo = broken demo.
+    try {
+      const btnCount = await page.$$eval('.persona-btn', (btns) => btns.length);
+      if (btnCount === 0) throw new Error('No persona buttons rendered — all personas may be hidden or brands array is empty');
+      record(`PAI: at least one persona visible (found ${btnCount})`, true, null);
+    } catch (e) { record('PAI: at least one persona visible', false, e.message); }
+
+    // Critical CSS: #brand-desc must have a fixed height to prevent layout shift on persona switch.
+    try {
+      const height = await page.$eval('#brand-desc', (el) => getComputedStyle(el).height);
+      if (height === 'auto') throw new Error(`#brand-desc height is 'auto' — will cause layout shift on persona switch`);
+      record('PAI: #brand-desc has fixed height (no layout shift)', true, null);
+    } catch (e) { record('PAI: #brand-desc has fixed height (no layout shift)', false, e.message); }
+
+    // Structure: .persona-row and #brand-desc must both live inside .persona-card.
+    try {
+      const inCard = await page.evaluate(() => {
+        const card = document.querySelector('.persona-card');
+        if (!card) return { row: false, desc: false };
+        return { row: !!card.querySelector('.persona-row'), desc: !!card.querySelector('#brand-desc') };
+      });
+      if (!inCard.row)  throw new Error('.persona-row is not inside .persona-card');
+      if (!inCard.desc) throw new Error('#brand-desc is not inside .persona-card');
+      record('PAI: .persona-row and #brand-desc are inside .persona-card', true, null);
+    } catch (e) { record('PAI: .persona-row and #brand-desc are inside .persona-card', false, e.message); }
+
     try {
       const getY = (sel) => page.$eval(sel, (el) => Math.round(el.getBoundingClientRect().top));
       const anchors = ['#prompt-input', '.output-grid'];

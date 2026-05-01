@@ -2,6 +2,16 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink, Info, X } from 'lucide-react';
 
+function linkify(text) {
+  const esc = text
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  const a = (href, label) =>
+    `<a href="${href}" target="_blank" rel="noopener noreferrer" style="color:#17D9DA;text-decoration:underline;text-underline-offset:2px">${label}</a>`;
+  return esc
+    .replace(/\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g, (_, label, url) => a(url, label))
+    .replace(/(?<!href=")(https?:\/\/[^\s<>"]+)/g, (url) => a(url, url));
+}
+
 const bots = [
 {
   name: 'Teenage-buddy Kai',
@@ -82,7 +92,7 @@ function BotCard({ bot, index }) {
           
           <div className="space-y-3 flex-1 overflow-y-auto min-h-0">
             <h3 className="font-orbitron text-sm font-semibold tracking-wide text-purple">{bot.name}</h3>
-            <p className="text-foreground/80 text-sm leading-relaxed whitespace-pre-line">{bot.description}</p>
+            <p className="text-foreground/80 text-sm leading-relaxed whitespace-pre-line" dangerouslySetInnerHTML={{ __html: linkify(bot.description) }} />
           </div>
           <div className="flex items-center justify-between mt-4">
             <a
