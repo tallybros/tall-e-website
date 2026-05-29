@@ -24,10 +24,12 @@ const projects = [
     accent: '#dbadc1',
     titleFont: "'Cherry Swash', Georgia, serif",
     Logo: () => <img src="/surprise-box.png" alt="Surprise Me, Silly gift box" className="h-14 w-auto" style={{ transform: 'translateY(-5px)' }} />,
+    screenshot: '/screenshot-sms.png',
+    screenshotAlt: 'Surprise Me, Silly homepage showing the gift finder form',
   },
   {
     name: "It's not you, it's me",
-    description: ['Writes the hard messages for you.', 'Breakups, apologies, hard truths and more…'],
+    description: ['Writes the hard messages for you.', 'Breakups, apologies, hard truths and more'],
     url: 'https://www.itsnotyouitsme.nl/',
     displayUrl: 'itsnotyouitsme.nl',
     bg: '#9A2E25',
@@ -35,6 +37,8 @@ const projects = [
     accent: '#F4ECDC',
     titleFont: "'Newsreader', Georgia, serif",
     Logo: ({ color }) => <InymiLogo color={color} />,
+    screenshot: '/screenshot-inymi.png',
+    screenshotAlt: "It's Not You, It's Me writing assistant with message categories",
   },
 ];
 
@@ -80,7 +84,15 @@ export default function ConversationDesign() {
                 {project.description.map((line, idx) => <p key={idx}>{line}</p>)}
               </div>
 
-              <div className="text-center text-xs mt-3 tracking-wide" style={{ color: project.accent, opacity: 0.7 }}>
+              <div className="mx-auto mt-4 w-3/4 rounded-lg overflow-hidden border-2" style={{ borderColor: project.accent }}>
+                <img
+                  src={project.screenshot}
+                  alt={project.screenshotAlt}
+                  loading="lazy"
+                  className="w-full h-auto block group-hover:scale-[1.02] transition-transform duration-500" />
+              </div>
+
+              <div className="text-center text-xs mt-3 tracking-wide" style={{ color: project.accent, opacity: 0.85 }}>
                 {project.displayUrl}
               </div>
             </motion.a>
