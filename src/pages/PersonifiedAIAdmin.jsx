@@ -81,6 +81,8 @@ export default function PersonifiedAIAdmin() {
       const radio = root.querySelector(`input[name="model"][value="${settings.model}"]`);
       if (radio) radio.checked = true;
       renderBrandList();
+      const pgModel = $('#playground-model');
+      if (pgModel) pgModel.innerHTML = modelOptions(settings.model);
     }
 
     function renderBrandList() {
@@ -269,6 +271,32 @@ export default function PersonifiedAIAdmin() {
       btn.disabled = false;
     }
 
+    async function runPlayground() {
+      const prompt = $('#playground-prompt').value.trim();
+      if (!prompt) return;
+      const model = $('#playground-model').value;
+      const btn = $('#playground-run-btn');
+      const out = $('#playground-out');
+      const tokens = $('#playground-tokens');
+      btn.disabled = true;
+      out.innerHTML = '<div class="loading"><span></span><span></span><span></span></div>';
+      tokens.textContent = '';
+      try {
+        const res = await fetch('/api/generate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ prompt, model, devToken: adminPassword }),
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error);
+        out.textContent = data.text;
+        if (data.tokens) tokens.textContent = `${data.tokens} tokens`;
+      } catch (e) {
+        out.textContent = `Error: ${e.message}`;
+      }
+      btn.disabled = false;
+    }
+
     function deleteBrand(id) {
       if (!confirm('Delete this persona?')) return;
       settings.brands = settings.brands.filter((b) => b.id !== id);
@@ -346,6 +374,10 @@ export default function PersonifiedAIAdmin() {
       tabHandlers.push([btn, h]);
     });
 
+    const playgroundRunBtn = $('#playground-run-btn');
+    const onPlaygroundRun = () => runPlayground();
+    playgroundRunBtn.addEventListener('click', onPlaygroundRun);
+
     if (adminPassword) tryLogin(adminPassword, true);
 
     return () => {
@@ -354,6 +386,7 @@ export default function PersonifiedAIAdmin() {
       addBrandBtn.removeEventListener('click', onAddBrand);
       radioHandlers.forEach(([r, h]) => r.removeEventListener('change', h));
       tabHandlers.forEach(([b, h]) => b.removeEventListener('click', h));
+      playgroundRunBtn.removeEventListener('click', onPlaygroundRun);
     };
   }, []);
 
@@ -713,8 +746,10 @@ export default function PersonifiedAIAdmin() {
               <div className="sidebar-label">Settings</div>
               <button className="nav-btn active" data-tab="model">Model</button>
               <button className="nav-btn" data-tab="brands">Personas</button>
+              <div className="sidebar-label" style={{marginTop: '1.5rem'}}>Playground</div>
+              <button className="nav-btn" data-tab="playground">Playground</button>
               <div className="sidebar-label" style={{marginTop: '1.5rem'}}>Analytics</div>
-              <a className="nav-btn" href="https://eu.posthog.com" target="_blank" rel="noopener noreferrer" style={{textDecoration: 'none', display: 'block'}}>PostHog ↗</a>
+              <a className="nav-btn" href="https://eu.posthog.com/project/164898/web" target="_blank" rel="noopener noreferrer" style={{textDecoration: 'none', display: 'block'}}>PostHog ↗</a>
               <a className="nav-btn" href="https://vercel.com/tallybros-projects/tall-e-website/analytics" target="_blank" rel="noopener noreferrer" style={{textDecoration: 'none', display: 'block'}}>Vercel Analytics ↗</a>
               <div className="sidebar-bottom">
                 <p className="save-status" id="save-status"></p>
@@ -808,6 +843,23 @@ export default function PersonifiedAIAdmin() {
                   <div className="brand-editor" id="brand-editor">
                     <p className="editor-placeholder">Select a persona to edit</p>
                   </div>
+                </div>
+              </div>
+
+              <div className="tab" id="tab-playground">
+                <h2 className="tab-title">Playground</h2>
+                <p className="tab-desc">Test generic AI output — no persona, no system prompt. Raw model response.</p>
+                <div className="preview-controls">
+                  <textarea id="playground-prompt" placeholder="Type a prompt…" rows={3} />
+                  <select className="model-select" id="playground-model" aria-label="Select AI model"></select>
+                  <button className="preview-run-btn" id="playground-run-btn">Go</button>
+                </div>
+                <div className="preview-col">
+                  <div className="preview-col-head">
+                    <span>Generic AI output</span>
+                    <span className="preview-token-count" id="playground-tokens"></span>
+                  </div>
+                  <div className="preview-col-body" id="playground-out"></div>
                 </div>
               </div>
             </main>

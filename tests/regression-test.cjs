@@ -191,7 +191,7 @@ async function checkPersonifiedPublic(browser) {
       const btns = await page.$$('.persona-btn');
       for (let i = 1; i < btns.length; i++) {
         await btns[i].click();
-        await new Promise((r) => setTimeout(r, 150));
+        await new Promise((r) => setTimeout(r, 300)); // 2× transition duration (0.15s) so contrast check never catches mid-fade
         for (const s of anchors) {
           const after = await getY(s);
           if (Math.abs(before[s] - after) > 2) throw new Error(`Layout shift on persona ${i + 1}: ${s} moved ${before[s]}→${after}`);

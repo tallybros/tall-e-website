@@ -136,6 +136,8 @@ export default function PersonifiedAI() {
       guidedOut.innerHTML = loadingHTML();
       $('#generic-meta-head').textContent = '';
       $('#guided-meta-head').textContent = '';
+      const labelEl = $('#guided-col-label');
+      if (labelEl) labelEl.textContent = 'Personified AI';
       try {
         const [generic, guided] = await Promise.all([
           callAPI(null, prompt),
@@ -144,7 +146,6 @@ export default function PersonifiedAI() {
         genericOut.textContent = generic.text;
         guidedOut.textContent = guided.text;
         const activeBrand = brands.find((b) => b.id === currentBrandId);
-        const labelEl = $('#guided-col-label');
         if (labelEl && activeBrand) labelEl.textContent = `Personified AI – ${activeBrand.name}`;
         $('#generic-meta-head').textContent = generic.model
           ? `${formatModel(generic.model)}${generic.tokens ? ` · ${generic.tokens} tokens` : ''}`
@@ -254,7 +255,7 @@ export default function PersonifiedAI() {
         #personified-ai-page .persona-desc {
           border-top: 1px solid var(--pai-border);
           padding: 14px 18px; font-size: 13px;
-          color: rgba(255,255,255,0.55); font-weight: 300; line-height: 1.7;
+          color: rgba(255,255,255,0.75); font-weight: 300; line-height: 1.7;
           height: calc(5 * 1.7 * 13px + 28px); overflow-y: auto; white-space: pre-wrap;
         }
 

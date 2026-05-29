@@ -27,8 +27,9 @@ export default function Home() {
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
       <HeroSection />
-      <SelectedWork />
+      <div id="work" style={{ scrollMarginTop: '64px' }} />
       <PersonifiedAISection />
+      <SelectedWork />
       <AboutMe />
       <ContactBot />
       <Certifications />

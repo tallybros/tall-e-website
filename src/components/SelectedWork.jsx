@@ -118,7 +118,7 @@ function BotCard({ bot, index }) {
 
 export default function SelectedWork() {
   return (
-    <section id="work" className="bg-[hsl(var(--secondary))] pt-28 pb-14 relative">
+    <section id="convobots" className="bg-[hsl(var(--secondary))] pt-8 pb-14 relative">
       <div className="max-w-6xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { Sparkles, MessageSquare, PenTool } from 'lucide-react';
 
 const skills = [
@@ -31,13 +32,15 @@ export default function AboutMe() {
 
             <div className="space-y-5 text-foreground/85 text-[15px] leading-relaxed">
               <p>
-                I've been in tech for over twenty years: I started out as a software developer, writing in Visual Basic. I moved to product management and led one of the most successful mobile apps in the country. These days, I have the privilege of experiencing Generative AI making the biggest revolution in tech history.
+                I've been in tech for over two decades: I started out as a software developer, writing in Visual Basic. I moved to product management and led one of the most successful mobile apps in the country. These days, not only do I have a front row seat to the biggest revolution in tech history – Generative AI – I'm part of the conversation.
               </p>
               <p>
-                In my years translating user intent into user delight, I have learned how to pinpoint the exact wording to create a consistent conversation that creates trust.
+                In my years translating user intent into user delight, I have learned how to pinpoint the precise wording to create consistent interactions that build trust. Like a two-way conversation with a product.
               </p>
-              <p>I find the essence of a brand's voice and bring that to life to create experiences powered by words - whether transitional conversations (websites, apps) or Convo-bots (AI-powered conversations).
-
+              <p>
+                I do this by finding the essence of a brand's voice and bringing it to life to craft experiences powered by words – this could be traditional conversations, embedded AI or{' '}
+                <a href="#convobots" onClick={(e) => { e.preventDefault(); document.getElementById('convobots')?.scrollIntoView({ behavior: 'smooth' }); }} className="text-turquoise hover:text-turquoise/80 underline underline-offset-2 transition-colors">Convobots</a>
+                {' '}(AI-powered conversations).
               </p>
             </div>
           </motion.div>
@@ -56,7 +59,7 @@ export default function AboutMe() {
                 key={skill.label}
                 href="#contact"
                 className="flex items-center gap-4 p-4 rounded-xl bg-card border border-border hover:border-purple/30 transition-all duration-300 group">
-                
+
                   <div className="w-10 h-10 rounded-lg bg-purple/10 flex items-center justify-center group-hover:bg-purple/20 transition-colors">
                     <skill.icon size={18} className="text-purple" />
                   </div>
@@ -64,6 +67,9 @@ export default function AboutMe() {
                 </a>
               )}
             </div>
+            <Link to="/why" className="inline-flex items-center gap-1 text-sm text-purple hover:opacity-80 transition-opacity mt-4">
+              Every good product starts with the 'why'. <span className="text-[#DFC2F2]">This is mine</span>
+            </Link>
           </motion.div>
         </div>
       </div>

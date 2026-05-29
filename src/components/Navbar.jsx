@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 
 export default function Navbar() {
@@ -48,6 +48,11 @@ export default function Navbar() {
               {l.label}
             </a>
           )}
+          <Link
+            to="/why"
+            className="text-[hsl(var(--accent-foreground))] text-sm hover:text-foreground transition-colors duration-300">
+            My reason why
+          </Link>
         </div>
 
         {/* Mobile toggle */}
@@ -70,6 +75,12 @@ export default function Navbar() {
               {l.label}
             </a>
         )}
+          <Link
+            to="/why"
+            onClick={() => setOpen(false)}
+            className="block text-sm text-muted-foreground hover:text-foreground transition-colors">
+            My reason why
+          </Link>
         </div>
       }
     </nav>);

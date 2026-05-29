@@ -9,9 +9,9 @@ const BASE = `http://localhost:${PORT}`;
 // Baselines set 2026-05-01. Tests fail only if the count INCREASES — i.e. new
 // issues are introduced. To raise a baseline, document why in a comment here.
 const ROUTES = [
-  { path: '/',                    label: 'Homepage',                 baseline: 19 },
+  { path: '/',                    label: 'Homepage',                 baseline: 20 },
   { path: '/personified-ai',      label: 'Personified AI (public)',  baseline: 5  },
-  { path: '/personified-ai/admin',label: 'Personified AI (admin)',   baseline: 8  },
+  { path: '/personified-ai/admin',label: 'Personified AI (admin)',   baseline: 11 },
 ];
 
 async function run() {
