@@ -1,0 +1,16 @@
+# Tall-e
+
+> Prompt Engineering & Conversation Design — portfolio and contact.
+
+Tall-e (tall-e.nl) is the professional portfolio of Tally Brostowsky, a prompt engineer and conversation designer based in the Netherlands.
+
+## What it covers
+
+- Selected work and case studies in prompt engineering and AI conversation design
+- The Personified AI project — giving AI personas a distinct voice and character
+- About and background
+- Contact via an AI-powered contact bot
+
+## Key pages
+
+- / — homepage with portfolio, selected work, and contact
