@@ -4,7 +4,7 @@
 
 Tall-e (tall-e.nl) is the professional portfolio of Tally Brostowsky, a Netherlands-based prompt engineer and conversation designer with over two decades in tech. She started as a software developer, moved into product management (leading one of the most successful mobile apps in the country), and now specialises in the intersection of brand voice and generative AI.
 
-Her work focuses on turning user intent into user delight — finding the essence of a brand's personality and bringing it to life through words, whether in traditional UX copy, embedded AI, or Convobots (AI-powered conversational experiences).
+Her work focuses on translating user intent into user delight — finding the essence of a brand's personality and bringing it to life through words, whether in traditional UX copy, embedded AI, or Convobots (AI-powered conversational experiences).
 
 ## Skills
 
@@ -12,6 +12,17 @@ Her work focuses on turning user intent into user delight — finding the essenc
 - AI conversation design
 - UX writing
 - AI persona design (giving AI models a distinct, consistent character)
+
+## Personified AI demo
+
+An interactive demo that shows what AI persona design looks like in practice. Pick a persona, ask it anything, and compare the responses side-by-side. Same model, same question — only the persona prompt changes. Available at /personified-ai.
+
+## Conversation Design projects
+
+Products where the conversation is the experience — designed from the ground up around how people actually talk:
+
+- **It's Not You, It's Me** (itsnotyouitsme.nl) — a breakup message writer; guides you through a short conversation and writes the tough "it's over" message so you don't have to
+- **Surprise Me, Silly** (surprisemesilly.nl) — a privacy-first gift finder; asks smart questions about the recipient and surfaces thoughtful, curated ideas — experiences, local finds, acts of kindness
 
 ## Featured work — Convobots
 
@@ -21,12 +32,8 @@ Live demos of AI-powered conversations, each built around a distinct persona pro
 - **Pubquiz Rick** (rick-convobot.tall-e.nl) — a Dutch pub quiz host using RAG for localised trivia; recreates the social atmosphere of a real quiz night
 - **CV Bot** (cv-convobot.tall-e.nl) — an interactive CV reader; answers questions about Tally's background using her CV as a RAG source
 
-## Personified AI demo
-
-An interactive demo that shows what AI persona design looks like in practice. Pick a persona, ask it anything, compare the responses. Available at /personified-ai.
-
 ## Key pages
 
-- / — homepage with portfolio, selected work, and contact
+- / — homepage with Personified AI demo, Conversation Design projects, Convobots portfolio, and contact
 - /personified-ai — live persona comparison demo
-- /why — the thinking behind the work
+- /why — the thinking behind the work; why prompt engineering and conversation design matter

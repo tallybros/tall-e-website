@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar';
 import HeroSection from '../components/HeroSection';
 import SelectedWork from '../components/SelectedWork';
 import PersonifiedAISection from '../components/PersonifiedAISection';
+import ConversationDesign from '../components/ConversationDesign';
 import AboutMe from '../components/AboutMe';
 import ContactBot from '../components/ContactBot';
 import Certifications from '../components/Certifications';
@@ -29,6 +30,7 @@ export default function Home() {
       <HeroSection />
       <div id="work" style={{ scrollMarginTop: '64px' }} />
       <PersonifiedAISection />
+      <ConversationDesign />
       <SelectedWork />
       <AboutMe />
       <ContactBot />
