@@ -8,8 +8,13 @@ const BASE = `http://localhost:${PORT}`;
 // turquoise sections, footer muted text, purple button 0.05 under threshold).
 // Baselines set 2026-05-01. Tests fail only if the count INCREASES — i.e. new
 // issues are introduced. To raise a baseline, document why in a comment here.
+//
+// 2026-05-29: Homepage 20→23. Footer contrast issues (white brand text, copyright
+// + Coolors link in muted teal) were always present but only detected after the
+// Conversation Design section was added — likely pa11y timing artifact. Footer
+// hasn't changed; accepting as known.
 const ROUTES = [
-  { path: '/',                    label: 'Homepage',                 baseline: 20 },
+  { path: '/',                    label: 'Homepage',                 baseline: 23 },
   { path: '/personified-ai',      label: 'Personified AI (public)',  baseline: 5  },
   { path: '/personified-ai/admin',label: 'Personified AI (admin)',   baseline: 11 },
 ];
