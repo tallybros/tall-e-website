@@ -1,16 +1,32 @@
 # Tall-e
 
-> Prompt Engineering & Conversation Design — portfolio and contact.
+> Prompt engineering, conversation design, and AI persona work — portfolio of Tally Brostowsky.
 
-Tall-e (tall-e.nl) is the professional portfolio of Tally Brostowsky, a prompt engineer and conversation designer based in the Netherlands.
+Tall-e (tall-e.nl) is the professional portfolio of Tally Brostowsky, a Netherlands-based prompt engineer and conversation designer with over two decades in tech. She started as a software developer, moved into product management (leading one of the most successful mobile apps in the country), and now specialises in the intersection of brand voice and generative AI.
 
-## What it covers
+Her work focuses on turning user intent into user delight — finding the essence of a brand's personality and bringing it to life through words, whether in traditional UX copy, embedded AI, or Convobots (AI-powered conversational experiences).
 
-- Selected work and case studies in prompt engineering and AI conversation design
-- The Personified AI project — giving AI personas a distinct voice and character
-- About and background
-- Contact via an AI-powered contact bot
+## Skills
+
+- Prompt engineering
+- AI conversation design
+- UX writing
+- AI persona design (giving AI models a distinct, consistent character)
+
+## Featured work — Convobots
+
+Live demos of AI-powered conversations, each built around a distinct persona prompt:
+
+- **Teenage-buddy Kai** (kai-convobot.tall-e.nl) — a friendly companion for teens; conversational, playful, supportive
+- **Pubquiz Rick** (rick-convobot.tall-e.nl) — a Dutch pub quiz host using RAG for localised trivia; recreates the social atmosphere of a real quiz night
+- **CV Bot** (cv-convobot.tall-e.nl) — an interactive CV reader; answers questions about Tally's background using her CV as a RAG source
+
+## Personified AI demo
+
+An interactive demo that shows what AI persona design looks like in practice. Pick a persona, ask it anything, compare the responses. Available at /personified-ai.
 
 ## Key pages
 
 - / — homepage with portfolio, selected work, and contact
+- /personified-ai — live persona comparison demo
+- /why — the thinking behind the work
