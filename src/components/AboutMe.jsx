@@ -67,7 +67,7 @@ export default function AboutMe() {
                 </a>
               )}
             </div>
-            <Link to="/why" className="inline-flex items-center gap-1 text-sm text-purple hover:opacity-80 transition-opacity mt-4">
+            <Link to="/why" className="inline-block text-xs sm:text-sm text-purple hover:opacity-80 transition-opacity mt-4 whitespace-nowrap">
               Every good product starts with the 'why'. <span className="text-[#DFC2F2]">This is mine</span>
             </Link>
           </motion.div>
