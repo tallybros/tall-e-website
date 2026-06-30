@@ -2,7 +2,7 @@
 
 > Prompt engineering, conversation design, and AI persona work — portfolio of Tally Brostowsky.
 
-Tall-e (tall-e.nl) is the professional portfolio of Tally Brostowsky, a Netherlands-based prompt engineer and conversation designer with over two decades in tech. She started as a software developer, moved into product management (leading one of the most successful mobile apps in the country), and now specialises in the intersection of brand voice and generative AI.
+Tall-e (tall-e.ai) is the professional portfolio of Tally Brostowsky, a Netherlands-based prompt engineer and conversation designer with over two decades in tech. She started as a software developer, moved into product management (leading one of the most successful mobile apps in the country), and now specialises in the intersection of brand voice and generative AI.
 
 Her work focuses on translating user intent into user delight — finding the essence of a brand's personality and bringing it to life through words, whether in traditional UX copy, embedded AI, or Convobots (AI-powered conversational experiences).
 
