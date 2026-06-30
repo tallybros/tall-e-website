@@ -19,9 +19,9 @@ const projects = [
     ],
     url: 'https://surprisemesilly.nl/',
     displayUrl: 'surprisemesilly.nl',
-    bg: '#502274',
-    ink: '#f3e3d2',
-    accent: '#dbadc1',
+    bg: '#234f5a',
+    ink: '#e4e9e0',
+    accent: '#b6c8bf',
     titleFont: "'Cherry Swash', Georgia, serif",
     Logo: () => <img src="/surprise-box.png" alt="Surprise Me, Silly gift box" className="h-14 w-auto" style={{ transform: 'translateY(-5px)' }} />,
     screenshot: '/screenshot-sms.png',
@@ -92,7 +92,7 @@ export default function ConversationDesign() {
                   className="w-full h-auto block group-hover:scale-[1.02] transition-transform duration-500" />
               </div>
 
-              <div className="text-center text-xs mt-3 tracking-wide" style={{ color: project.accent, opacity: 0.85 }}>
+              <div className="text-center text-xs mt-3 tracking-wide underline underline-offset-2" style={{ color: project.accent, opacity: 0.85 }}>
                 {project.displayUrl}
               </div>
             </motion.a>
