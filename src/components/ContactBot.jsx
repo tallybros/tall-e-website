@@ -206,7 +206,7 @@ export default function ContactBot() {
         <div id="contact-grid" style={{ display: 'grid', gridTemplateColumns: '300px 1fr', gap: 48, alignItems: 'start' }}>
           {/* Tiles */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-            <ContactTile icon="mail" tint={T.purple} hoverBorder="rgba(143,91,222,0.5)" label="Email" value="info@tall-e.nl" href="mailto:info@tall-e.nl" bg="rgba(143,91,222,0.10)" />
+            <ContactTile icon="mail" tint={T.purple} hoverBorder="rgba(143,91,222,0.5)" label="Email" value="info@tall-e.ai" href="mailto:info@tall-e.ai" bg="rgba(143,91,222,0.10)" />
             <ContactTile icon="linkedin" tint={T.turquoise} hoverBorder="rgba(23,217,218,0.5)" label="LinkedIn" value="Tally Brostowsky" href="https://www.linkedin.com/in/tally-brostowsky/" bg="rgba(23,217,218,0.10)" />
             <div id="kvk-desktop" style={{ marginTop: 12, color: 'rgba(255,255,255,0.45)', fontFamily: T.body, fontSize: 12, lineHeight: 1.7 }}>
               <div>KVK: 42029043</div>
@@ -278,7 +278,7 @@ export default function ContactBot() {
                     {sendError && (
                       <p style={{ fontFamily: T.body, fontSize: 13, color: 'rgba(239,130,130,0.9)', marginTop: 8, textAlign: 'right' }}>
                         Oh no! Can't send your message. Try email:{' '}
-                        <a href="mailto:info@tall-e.nl" style={{ color: 'rgba(239,130,130,0.9)', textDecoration: 'underline' }}>info@tall-e.nl</a>
+                        <a href="mailto:info@tall-e.ai" style={{ color: 'rgba(239,130,130,0.9)', textDecoration: 'underline' }}>info@tall-e.ai</a>
                       </p>
                     )}
                   </div>
