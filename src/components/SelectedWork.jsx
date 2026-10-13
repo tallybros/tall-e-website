@@ -125,17 +125,8 @@ export default function SelectedWork() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6 }}>
-          <h2 className="font-orbitron text-3xl md:text-4xl font-bold mb-3">Convobots*</h2>
+          <h2 className="font-orbitron text-3xl md:text-4xl font-bold mb-10">More Convobots</h2>
         </motion.div>
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-white mb-10 text-sm max-w-2xl">
-          * Convobots are AI-powered conversational experiences designed & crafted by a human (me!)
-        </motion.p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {bots.map((bot, i) => <BotCard key={bot.name} bot={bot} index={i} />)}

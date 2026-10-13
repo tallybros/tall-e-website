@@ -14,8 +14,8 @@ const projects = [
   {
     name: 'Surprise Me, Silly',
     description: [
-      'Finds a perfect gift for those hard to shop for.',
-      'Who say: “I don’t know, just surprise me, silly”',
+      'Sally the Convobot finds the perfect gift for those hard to shop for.',
+      'For those who say: “I don’t know, just surprise me, silly”',
     ],
     url: 'https://surprisemesilly.nl/',
     displayUrl: 'surprisemesilly.nl',
@@ -29,7 +29,7 @@ const projects = [
   },
   {
     name: "It's not you, it's me",
-    description: ['Writes the hard messages for you.', 'Breakups, apologies, hard truths and more'],
+    description: ['A Convobot that writes the hard messages for you.', 'Breakups, apologies, hard truths and more'],
     url: 'https://www.itsnotyouitsme.nl/',
     displayUrl: 'itsnotyouitsme.nl',
     bg: '#9A2E25',
@@ -53,7 +53,7 @@ export default function ConversationDesign() {
           transition={{ duration: 0.6 }}>
           <h2 className="font-orbitron text-3xl md:text-4xl font-bold mb-3">Conversation Design</h2>
           <p className="text-white text-sm mb-10 max-w-2xl">
-            Products I&rsquo;ve delivered where the conversation <em>is</em> the experience
+            Convobot* products I&rsquo;ve built where the conversation <em>is</em> the experience
           </p>
         </motion.div>
 
@@ -98,6 +98,15 @@ export default function ConversationDesign() {
             </motion.a>
           ))}
         </div>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="text-white text-sm max-w-2xl mt-8">
+          * Convobots are AI-powered conversational experiences designed &amp; crafted by a human (me!)
+        </motion.p>
       </div>
     </section>
   );

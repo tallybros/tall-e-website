@@ -6,6 +6,7 @@ import PersonifiedAISection from '../components/PersonifiedAISection';
 import ConversationDesign from '../components/ConversationDesign';
 import AboutMe from '../components/AboutMe';
 import ContactBot from '../components/ContactBot';
+import FAQ from '../components/FAQ';
 import Certifications from '../components/Certifications';
 import Footer from '../components/Footer';
 
@@ -34,6 +35,7 @@ export default function Home() {
       <SelectedWork />
       <AboutMe />
       <ContactBot />
+      <FAQ />
       <Certifications />
       <Footer />
     </div>
