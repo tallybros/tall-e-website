@@ -33,11 +33,16 @@ const faqs = [
     a: 'A chatbot is smart and has all the information of the world, but it is also very generic and can be unpredictable. Think about your last conversation with Gemini or ChatGPT.\n\nA Convobot uses the same chatbot capabilities but in a focused manner, both in its expertise and its experience, so the result is a personified and personal conversation, tailored exactly to your brand.',
   },
   {
-    q: 'What makes Tall-e unique?',
-    a: 'Two decades of translating user intent into user delight, now applied to conversations with AI. Each project starts with the “why”, lands on a precise voice, and treats every line of dialogue the way a seasoned product manager treats a feature – big or small.',
+    q: 'Who is behind Tall-e?',
+    a: 'Tall-e is Tally Brostowsky, a Netherlands-based prompt engineer and conversation designer with over two decades in tech. She started out as a software developer but quickly moved into product management, drawn to the strategic “why”, not just the technical “how”. There she led product and UX teams and one of the most successful mobile apps in her country.\n\nToday she applies that same product-manager empathy to deliver custom solutions using AI, as a conversation designer.',
     cta: (
-      <>Deciding to become a conversation designer also started with a “why”, read about it <Link to="/why" className={linkClass}>here</Link>.</>
+      <>Transitioning into a conversation designer also started with a “why”, read about it <Link to="/why" className={linkClass}>here</Link>.</>
     ),
+    ctaInline: true,
+  },
+  {
+    q: 'What makes Tall-e unique?',
+    a: 'Tall-e brings a unique voice to every project, that conveys its essence in a humanoid form, a personified Convobot. Each project starts with the “why”, lands on a precise voice, and treats every line of dialogue the way a seasoned product manager treats a feature, with love.',
   },
 ];
 
