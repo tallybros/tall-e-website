@@ -42,8 +42,7 @@ export default function PersonifiedAIAdmin() {
       { value: 'claude-sonnet-4-6', label: 'Claude Sonnet 4.6' },
       { value: 'claude-haiku-4-5-20251001', label: 'Claude Haiku 4.5' },
       { value: 'gemini-2.5-pro', label: 'Gemini 2.5 Pro' },
-      { value: 'gpt-4o', label: 'GPT-4o' },
-      { value: 'gpt-4o-mini', label: 'GPT-4o mini' },
+      { value: 'gpt-6-luna', label: 'GPT-6 Luna' },
       { value: 'o3-mini', label: 'o3 mini' },
     ];
 
@@ -809,16 +808,9 @@ export default function PersonifiedAIAdmin() {
                 </div>
                 <div className="model-cards">
                   <label className="model-card">
-                    <input type="radio" name="model" value="gpt-4o" />
+                    <input type="radio" name="model" value="gpt-6-luna" />
                     <div className="model-card-info">
-                      <strong>GPT-4o</strong>
-                      <span>Flagship – best quality</span>
-                    </div>
-                  </label>
-                  <label className="model-card">
-                    <input type="radio" name="model" value="gpt-4o-mini" />
-                    <div className="model-card-info">
-                      <strong>GPT-4o mini</strong>
+                      <strong>GPT-6 Luna</strong>
                       <span>Fast and affordable</span>
                     </div>
                   </label>

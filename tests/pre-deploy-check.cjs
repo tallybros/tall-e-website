@@ -15,7 +15,7 @@ const url = require('url');
 
 const args = process.argv.slice(2);
 const urlFlag = args.indexOf('--url');
-const BASE = urlFlag !== -1 ? args[urlFlag + 1] : 'https://www.tall-e.nl';
+const BASE = urlFlag !== -1 ? args[urlFlag + 1] : 'https://tall-e.ai';
 
 function get(endpoint) {
   return new Promise((resolve, reject) => {

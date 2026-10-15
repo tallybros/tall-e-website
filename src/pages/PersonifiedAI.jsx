@@ -36,8 +36,7 @@ export default function PersonifiedAI() {
       if (m.includes('opus')) return 'Claude Opus';
       if (m.includes('sonnet')) return 'Claude Sonnet';
       if (m.includes('haiku')) return 'Claude Haiku';
-      if (m.includes('gpt-4o-mini')) return 'GPT-4o mini';
-      if (m.includes('gpt-4o')) return 'GPT-4o';
+      if (m.includes('gpt-6-luna')) return 'GPT-6 Luna';
       if (m.includes('o3-mini')) return 'o3 mini';
       if (m.includes('gemini-2.5-pro')) return 'Gemini 2.5 Pro';
       return m;

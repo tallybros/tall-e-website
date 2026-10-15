@@ -46,22 +46,22 @@ describe('settings fallback – brands array', () => {
   });
 
   it('restores default brands when brands key is missing entirely', () => {
-    const result = applyFallback({ model: 'gpt-4o' });
+    const result = applyFallback({ model: 'gpt-6-luna' });
     expect(result.brands.length).toBeGreaterThan(0);
   });
 
   it('returns KV brands untouched when they are present', () => {
     const kvBrands = [{ id: 'cole', name: 'Cole', hidden: false, guide: 'Cole guide.' }];
-    const result = applyFallback({ model: 'gpt-4o', brands: kvBrands });
+    const result = applyFallback({ model: 'gpt-6-luna', brands: kvBrands });
     expect(result.brands).toEqual(kvBrands);
   });
 
   it('demo always has at least one visible persona', () => {
     const scenarios = [
       null,
-      { model: 'gpt-4o', brands: [] },
-      { model: 'gpt-4o' },
-      { model: 'gpt-4o', brands: [{ id: 'cole', name: 'Cole', hidden: false }] },
+      { model: 'gpt-6-luna', brands: [] },
+      { model: 'gpt-6-luna' },
+      { model: 'gpt-6-luna', brands: [{ id: 'cole', name: 'Cole', hidden: false }] },
     ];
 
     for (const kv of scenarios) {
@@ -84,8 +84,8 @@ describe('settings fallback – model preference', () => {
   });
 
   it('preserves KV model even when brands are restored from defaults', () => {
-    const result = applyFallback({ model: 'gpt-4o-mini', brands: [] });
-    expect(result.model).toBe('gpt-4o-mini');
+    const result = applyFallback({ model: 'gpt-6-luna', brands: [] });
+    expect(result.model).toBe('gpt-6-luna');
     expect(result.brands.length).toBeGreaterThan(0);
   });
 });
