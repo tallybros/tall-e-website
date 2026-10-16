@@ -320,11 +320,37 @@ export default function PersonifiedAI() {
           border: 1px solid var(--pai-border-card);
           overflow: hidden;
           background: var(--pai-bg-card);
+          transition: opacity 0.3s ease;
         }
+        #personified-ai-page .col-generic {
+          background: #e8e8e8;
+          border-style: dashed;
+          border-color: rgba(0,0,0,0.15);
+        }
+        #personified-ai-page .col-generic .output-col-head {
+          background: #d6d6d6;
+          border-bottom-color: rgba(0,0,0,0.08);
+        }
+        #personified-ai-page .col-generic .col-head-label { color: #555; }
+        #personified-ai-page .col-generic .col-head-meta { color: #555; opacity: 1; }
+        #personified-ai-page .col-generic .output-body { color: #333; }
+        #personified-ai-page .col-generic .output-placeholder { color: #777; opacity: 1; }
+
         #personified-ai-page .col-guided {
-          border-color: rgba(23,217,218,0.7);
-          box-shadow: 0 0 28px rgba(23,217,218,0.2), 0 0 6px rgba(23,217,218,0.15);
+          border: 2px solid rgba(23,217,218,0.95);
+          background: #ffffff;
+          box-shadow:
+            0 0 0 1px rgba(23,217,218,0.2),
+            0 0 32px rgba(23,217,218,0.35),
+            0 0 60px rgba(23,217,218,0.15);
         }
+        #personified-ai-page .col-guided .output-col-head {
+          background: rgba(23,217,218,0.95);
+          border-bottom-color: rgba(0,0,0,0.1);
+        }
+        #personified-ai-page .col-guided .col-head-meta { color: #001214; opacity: 0.75; }
+        #personified-ai-page .col-guided .output-body { color: #1a1a1a; }
+        #personified-ai-page .col-guided .output-placeholder { color: #666; opacity: 1; }
         #personified-ai-page .output-col-head {
           padding: 10px 16px; display: flex; align-items: center; justify-content: space-between;
           border-bottom: 1px solid var(--pai-border-card); background: var(--pai-bg-raised);
@@ -334,7 +360,7 @@ export default function PersonifiedAI() {
           font-family: var(--pai-font-title); font-size: 9px; font-weight: 400;
           text-transform: none; letter-spacing: 0.06em; color: var(--pai-text-card-sec);
         }
-        #personified-ai-page .col-guided .col-head-label { color: #007a7b; }
+        #personified-ai-page .col-guided .col-head-label { color: #555; }
         #personified-ai-page .col-head-meta {
           font-family: var(--pai-font-body); font-size: 10px;
           color: var(--pai-text-card-sec); opacity: 0.7; font-weight: 300;

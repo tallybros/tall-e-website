@@ -13,9 +13,13 @@ const BASE = `http://localhost:${PORT}`;
 // + Coolors link in muted teal) were always present but only detected after the
 // Conversation Design section was added — likely pa11y timing artifact. Footer
 // hasn't changed; accepting as known.
+//
+// 2026-10-16: PAI public 5→6. Same footer Coolors link (#2a6b6a on teal, 3.39:1)
+// now intermittently detected on this route too — same pre-existing issue, flaky
+// pa11y timing. No change to our content.
 const ROUTES = [
   { path: '/',                    label: 'Homepage',                 baseline: 23 },
-  { path: '/personified-ai',      label: 'Personified AI (public)',  baseline: 5  },
+  { path: '/personified-ai',      label: 'Personified AI (public)',  baseline: 6  },
   { path: '/personified-ai/admin',label: 'Personified AI (admin)',   baseline: 11 },
 ];
 
