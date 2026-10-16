@@ -68,7 +68,7 @@ export default function ConversationDesign() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.5, delay: i * 0.12 }}
-              className="group rounded-2xl border-2 border-border hover:shadow-xl transition-all duration-300 hover:-translate-y-1 px-6 py-5 flex flex-col"
+              className="group rounded-2xl border-2 border-border shadow-[0_20px_40px_-10px_rgba(0,0,0,0.55)] hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.7)] transition-all duration-300 hover:-translate-y-1 px-6 py-5 flex flex-col"
               style={{ background: project.bg, color: project.ink }}>
 
               <div className="flex items-center justify-center gap-3 mb-3">
