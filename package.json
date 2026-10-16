@@ -14,6 +14,7 @@
     "test:a11y": "node tests/a11y-test.cjs",
     "test:regression": "node tests/regression-test.cjs",
     "test:pre-deploy": "node tests/pre-deploy-check.cjs",
+    "test:models": "node tests/smoke-models.cjs",
     "test": "npm run test:unit && npm run build && npm run test:a11y && npm run test:regression",
     "prepare": "husky || true"
   },

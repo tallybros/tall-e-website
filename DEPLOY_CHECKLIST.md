@@ -17,10 +17,23 @@ node tests/pre-deploy-check.cjs
 Save the raw response to a local file **right now**, before touching anything:
 
 ```bash
-curl -s https://www.tall-e.nl/api/settings > kv-snapshot-$(date +%Y%m%d-%H%M%S).json
+curl -s https://tall-e.ai/api/settings > kv-snapshot-$(date +%Y%m%d-%H%M%S).json
 ```
 
 Keep this file. If the deploy corrupts KV, this is what you restore from — not something you reconstruct from memory after the fact.
+
+---
+
+## 1b. Smoke-test every configured model
+
+```bash
+npm run test:models
+```
+
+- Hits `/api/generate` for every model in the allowlists (OPENAI_MODELS, ANTHROPIC_MODELS, GOOGLE_MODELS). Uses `DEV_TOKEN` to bypass the rate limiter.
+- Catches: deprecated model IDs, renamed required parameters, stale API keys, response-shape changes.
+- Costs: a handful of tokens per model — fractions of a cent per run.
+- If any model fails → **STOP. Fix before deploying.**
 
 ---
 
