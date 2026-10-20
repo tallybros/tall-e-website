@@ -28,9 +28,9 @@ Products where the conversation is the experience — designed from the ground u
 
 Live demos of AI-powered conversations, each built around a distinct persona prompt:
 
-- **Teenage-buddy Kai** (kai-convobot.tall-e.nl) — a friendly companion for teens; conversational, playful, supportive
-- **Pubquiz Rick** (rick-convobot.tall-e.nl) — a Dutch pub quiz host using RAG for localised trivia; recreates the social atmosphere of a real quiz night
-- **CV Bot** (cv-convobot.tall-e.nl) — an interactive CV reader; answers questions about Tally's background using her CV as a RAG source
+- **Teenage-buddy Kai** (kai-convobot.tall-e.ai) — a friendly companion for teens; conversational, playful, supportive
+- **Pubquiz Rick** (rick-convobot.tall-e.ai) — a Dutch pub quiz host using RAG for localised trivia; recreates the social atmosphere of a real quiz night
+- **CV Bot** (cv-convobot.tall-e.ai) — an interactive CV reader; answers questions about Tally's background using her CV as a RAG source
 
 ## Key pages
 

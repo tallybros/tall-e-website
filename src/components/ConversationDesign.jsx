@@ -17,7 +17,7 @@ const projects = [
       'Sally the Convobot finds the perfect gift for those hard to shop for.',
       'For those who say: “I don’t know, just surprise me, silly”',
     ],
-    url: 'https://surprisemesilly.nl/',
+    url: 'https://surprisemesilly.nl/en',
     displayUrl: 'surprisemesilly.nl',
     bg: '#234f5a',
     ink: '#e4e9e0',
