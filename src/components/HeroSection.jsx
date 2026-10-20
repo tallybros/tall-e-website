@@ -4,7 +4,7 @@ const LOGO_URL = 'https://media.base44.com/images/public/69c3b529e7e26a28bd6de95
 
 export default function HeroSection() {
   return (
-    <section className="min-h-screen flex items-center relative overflow-hidden pt-16">
+    <section className="min-h-[85vh] flex items-center relative overflow-hidden pt-16">
       {/* Subtle gradient orbs */}
       <div className="absolute top-1/4 -left-32 w-96 h-96 bg-purple/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-1/4 -right-32 w-72 h-72 bg-turquoise/8 rounded-full blur-3xl pointer-events-none" />

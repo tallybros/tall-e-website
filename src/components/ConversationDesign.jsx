@@ -47,7 +47,7 @@ export default function ConversationDesign() {
     <section id="conversation-design" className="bg-[hsl(var(--secondary))] py-14 relative">
       <div className="max-w-6xl mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 1, y: 0 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6 }}>
@@ -64,7 +64,7 @@ export default function ConversationDesign() {
               href={project.url}
               target="_blank"
               rel="noopener"
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 1, y: 0 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.5, delay: i * 0.12 }}
@@ -100,7 +100,7 @@ export default function ConversationDesign() {
         </div>
 
         <motion.p
-          initial={{ opacity: 0 }}
+          initial={{ opacity: 1 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
