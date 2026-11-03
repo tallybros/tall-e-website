@@ -8,6 +8,7 @@ import Home from './pages/Home';
 import PersonifiedAI from './pages/PersonifiedAI';
 import PersonifiedAIAdmin from './pages/PersonifiedAIAdmin';
 import Why from './pages/Why';
+import Terms from './pages/Terms';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 // Add page imports here
@@ -42,6 +43,7 @@ const AuthenticatedApp = () => {
       <Route path="/personified-ai" element={<PersonifiedAI />} />
       <Route path="/personified-ai/admin" element={<PersonifiedAIAdmin />} />
       <Route path="/why" element={<Why />} />
+      <Route path="/terms" element={<Terms />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
