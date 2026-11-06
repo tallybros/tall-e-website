@@ -202,7 +202,7 @@ export default async function handler(req, res) {
 
   const ANTHROPIC_MODELS = ["claude-opus-4-7", "claude-sonnet-4-6", "claude-haiku-4-5-20251001"];
   const OPENAI_MODELS = ["gpt-6-luna", "o3-mini"];
-  const GOOGLE_MODELS = ["gemini-2.5-pro"];
+  const GOOGLE_MODELS = ["gemini-3.8-flash"];
   const isOpenAI = OPENAI_MODELS.includes(model);
   const isAnthropic = ANTHROPIC_MODELS.includes(model);
   const isGoogle = GOOGLE_MODELS.includes(model);
