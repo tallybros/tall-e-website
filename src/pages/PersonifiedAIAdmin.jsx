@@ -790,7 +790,7 @@ export default function PersonifiedAIAdmin() {
 
                 <div className="provider-label" style={{ marginTop: '1.5rem' }}>
                   Google{' '}
-                  <a href="https://aistudio.google.com/u/2/spend?pli=1&project=gen-lang-client-0247055951" target="_blank" rel="noreferrer" className="usage-link">Check balance ↗</a>
+                  <a href="https://aistudio.google.com/u/3/billing?billing=0156C5-5195DA-816A72&pli=1" target="_blank" rel="noreferrer" className="usage-link">Check balance ↗</a>
                 </div>
                 <div className="model-cards">
                   <label className="model-card">
